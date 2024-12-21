@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { Carousel } from '../Components/Carousel';
 import { IProduct } from '../types/product';
 import { ICart } from '../types/cart';
+import toast from 'react-hot-toast';
 
 
 const ProductDetail = () => {
@@ -45,6 +46,7 @@ const ProductDetail = () => {
       return updatedCart as ICart[];
     });
 
+    toast.success(`${productItem.name} is added on cart`)
   };
 
   const decreaseProductQty = () => {

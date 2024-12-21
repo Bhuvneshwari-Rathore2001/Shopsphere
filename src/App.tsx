@@ -63,7 +63,7 @@ function App() {
       <div className='sticky top-0 left-0 z-50'>
         <Header user={user!} setUser={setUser} />
       </div>
-      <Suspense fallback={<Loader />}>
+      <Suspense>
         <Routes>
           {/*if not login or login both case  */}
           <Route path='/' element={<Home />} />
