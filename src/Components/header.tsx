@@ -1,28 +1,25 @@
 import axios from 'axios';
 import { useState } from 'react';
-import {
-  FaSearch,
-  FaShoppingBag,
-} from 'react-icons/fa';
+import { FaSearch, FaShoppingBag } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
-import { IUser } from '../types/user';
+// import { resetUserState } from '../redux/slice/userSlice';
+import { dispatch, useSelector } from '../redux/store';
 
-interface IHeader {
-  user:IUser,
-  setUser:(val:IUser)=>void
-}
-
-const Header = ({user}:IHeader) => {
+const Header = () => {
+  const { user } = useSelector((state) => state.user);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const logoutHandler = async () => {
     setIsOpen(false);
-    await axios.get('http://localhost:4000/api/v1/logout', {
+    const res = await axios.get('http://localhost:4000/api/v1/logout', {
       withCredentials: true,
     });
+    // if (res.status === 200) {
+    //   dispatch(resetUserState());
+    // }
   };
-  
+
   return (
     <nav className='flex items-center justify-between px-14 py-6 bg-white'>
       <i className='text-3xl text-pink-500 font-bold'>

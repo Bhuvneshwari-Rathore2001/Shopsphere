@@ -1,20 +1,21 @@
-import axios from 'axios';
-import { Suspense, lazy, useEffect, useState } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
 import {
   Navigate,
   Route,
   BrowserRouter as Router,
   Routes,
 } from 'react-router-dom';
-import Header from './Components/Header.tsx';
-import Loader from './Components/Loader.tsx';
+
 import Dashboard from './adminDashboard/pages/dashboard.tsx';
 import EditOrder from './adminDashboard/pages/editOrder.tsx';
 import EditProduct from './adminDashboard/pages/editProduct.tsx';
 import EditUser from './adminDashboard/pages/editUser.tsx';
 import ProductDetail from './pages/productDetails.tsx';
-import { IUser } from './types/user.ts';
 import Profile from './pages/profile.tsx';
+
+import { fetchUser } from './redux/slice/userSlice.ts';
+import { useDispatch, useSelector } from './redux/store.ts';
+import Header from './Components/header.tsx';
 // import Profile from './pages/Profile.tsx';
 
 const Home = lazy(() => import('./pages/home'));
@@ -41,27 +42,20 @@ const Users = lazy(() => import('./adminDashboard/pages/users.tsx'));
 const Reviews = lazy(() => import('./adminDashboard/pages/reviews.tsx'));
 
 function App() {
-  const [user, setUser] = useState<IUser>();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const dispatch = useDispatch();
+  const { user, loading, error, isAuthenticated } = useSelector(
+    (state) => state.user
+  );
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const res = await axios.get('http://localhost:4000/api/v1/me', {
-        withCredentials: true,
-      });
-      if (res.data.success) {
-        setIsAuthenticated(true);
-        setUser(res.data.user);
-      }
-    };
-    fetchUsers();
+    dispatch(fetchUser());
   }, []);
 
   return (
     <Router>
       {/* Header */}
       <div className='sticky top-0 left-0 z-50'>
-        <Header user={user!} setUser={setUser} />
+        <Header />
       </div>
       <Suspense>
         <Routes>

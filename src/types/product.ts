@@ -18,3 +18,6 @@ export type IProduct = {
   reviews: string[];
   createdAt: string;
 };
+export type IProductState = {
+  
+}

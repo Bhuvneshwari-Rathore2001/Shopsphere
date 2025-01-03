@@ -11,5 +11,11 @@ export type IUser = {
   role: "Owner"|"Admin"|"User";
   createdAt: string;
 };
+export type IUserState = {
+  loading : boolean,
+  user : IUser|null,
+  isAuthenticated : boolean,
+  error : null | string
+}
 
 
