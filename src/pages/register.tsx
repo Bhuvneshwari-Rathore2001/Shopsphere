@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { ChangeEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { dispatch } from '../redux/store';
+import { updateUserState } from '../redux/slice/userSlice';
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -9,7 +11,6 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [avatar, setAvatar] = useState('');
   const [avatarPreview, setAvatarPreview] = useState<File|null>(null);
-  const [user, setUser] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -35,7 +36,7 @@ const Register = () => {
     );
 
     if (res.data.success) {
-      setUser(res.data.user);
+      dispatch(updateUserState(res.data.user))
       navigate('/');
     }
      

@@ -22,10 +22,16 @@ const userSlice = createSlice({
   name: 'user',
   initialState,
   reducers: {
-    // resetUserState:(state)=>{
-    //   state.user = null;
-    //   state.isAuthenticated = false;
-    // }
+    resetUserState:(state)=>{
+      state.user = null;
+      state.isAuthenticated = false;
+    },
+    updateUserState:(state,action)=>{
+      state.user = action.payload
+      state.isAuthenticated = true;
+    }
+
+    
   },
   extraReducers: (builder) => {
     builder
@@ -46,4 +52,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-// export const { resetUserState } = userSlice.actions;
+export const { resetUserState, updateUserState } = userSlice.actions;

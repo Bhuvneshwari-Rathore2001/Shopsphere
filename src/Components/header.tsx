@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { FaSearch, FaShoppingBag } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
-// import { resetUserState } from '../redux/slice/userSlice';
+import { resetUserState } from '../redux/slice/userSlice';
 import { dispatch, useSelector } from '../redux/store';
 
 const Header = () => {
@@ -15,9 +15,9 @@ const Header = () => {
     const res = await axios.get('http://localhost:4000/api/v1/logout', {
       withCredentials: true,
     });
-    // if (res.status === 200) {
-    //   dispatch(resetUserState());
-    // }
+    if (res.status === 200) {
+      dispatch(resetUserState());
+    }
   };
 
   return (

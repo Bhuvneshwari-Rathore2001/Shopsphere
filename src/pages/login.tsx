@@ -1,11 +1,12 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { dispatch } from '../redux/store';
+import { updateUserState } from '../redux/slice/userSlice';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [user, setUser] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (e: any) => {
@@ -24,7 +25,7 @@ const Login = () => {
       }
     );
     if (res.data.success) {
-      setUser(res.data.user);
+      dispatch(updateUserState(res.data.user));
       navigate('/');
     }
   };
