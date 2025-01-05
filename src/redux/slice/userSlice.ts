@@ -14,7 +14,6 @@ export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
   const response = await axios.get(`http://localhost:4000/api/v1/me`, {
     withCredentials: true,
   });
-  console.log(response.data.user)
   return response.data.user;
 });
 

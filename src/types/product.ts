@@ -18,6 +18,11 @@ export type IProduct = {
   reviews: string[];
   createdAt: string;
 };
+
 export type IProductState = {
-  
-}
+  loading: boolean;
+  products: IProduct[] | null;
+  productsCount: number;
+  resultPerPage:number;
+  error: null | string;
+};

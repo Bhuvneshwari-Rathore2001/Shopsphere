@@ -1,18 +1,20 @@
 import { FaPlus } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
 import { IProduct } from '../types/product';
-import { useNavigate } from 'react-router-dom';
 interface ILatestProductCard {
   product: IProduct;
 }
 
 const LatestProductsCard = ({ product }: ILatestProductCard) => {
-  const navigate = useNavigate()
   return (
     <>
-      <button className='w-72 border-black border-2 shadow-[8px_8px_0px_0px_rgb(168,85,247)] pb-5 relative group hover:scale-105' onClick={()=>navigate(`/product/details/${product._id}`)}>
+      <Link
+        to={`/product/details/${product._id}`}
+        className='w-72 border-black border-2 shadow-[8px_8px_0px_0px_rgb(168,85,247)] pb-5 relative group hover:scale-105'
+      >
         <div className='flex flex-col gap-1  p-[3px] w-full h-full leading-3'>
           <img
-            src={product.images[0]}
+            src={product.images[0].url}
             alt='macbook'
             className='object-fill h-52'
           />
@@ -33,7 +35,7 @@ const LatestProductsCard = ({ product }: ILatestProductCard) => {
             <FaPlus />
           </button>
         </div>
-      </button>
+      </Link>
     </>
   );
 };

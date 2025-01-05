@@ -1,22 +1,28 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { IProduct } from '../types/product';
+import { fetchProducts } from '../redux/slice/productSlice';
+import { dispatch, useSelector } from '../redux/store';
 import LatestProductsCard from './LatestProductsCard';
 
 const LatestProducts = () => {
-  const [allProducts, setAllProducts] = useState<IProduct[]>([]);
-
+  const { products , loading } = useSelector((state) => state.products);
+  
   useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await axios.get('http://localhost:4000/api/v1/products');
-      if (res.data.success) {
-        setAllProducts(res.data.products);
-      }
-    };
-    fetchProducts();
+    dispatch(fetchProducts());
   }, []);
 
+  const renderComponent = () =>{
+    if(loading){
+      return "loading...."
+    }
+    return (
+      <div className=' flex flex-1 gap-[42px] gap-y-20 flex-wrap max-w-7xl m-auto'>
+        {products && products.map((product) => (
+          <LatestProductsCard key={product._id} product={product}/>
+        ))}
+      </div>
+    );
+  }
   return (
     <div className='my-20'>
       <div className='flex justify-center items-center mb-16 max-w-7xl m-auto'>
@@ -30,13 +36,7 @@ const LatestProducts = () => {
           More...
         </Link>
       </div>
-      <main className=' '>
-        <div className=' flex flex-1 gap-[42px] gap-y-20 flex-wrap max-w-7xl m-auto'>
-          {allProducts.map((product) => (
-            <LatestProductsCard key={product._id} product={product} />
-          ))}
-        </div>
-      </main>
+      <main className=' '>{renderComponent()}</main>
       {/* <div className='grid grid-cols-6 gap-14  m-14'>
         <Category />
       </div> */}
