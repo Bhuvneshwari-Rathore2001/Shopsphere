@@ -1,11 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { IProductState } from '../../types/product';
+import { IProductsState } from '../../types/product';
 
-const initialState: IProductState = {
+const initialState: IProductsState = {
   products: null,
-  productsCount:0,
-  resultPerPage:0,
+  productsCount: 0,
+  resultPerPage: 0,
   loading: false,
   error: null,
 };
@@ -36,8 +36,6 @@ const productsSlice = createSlice({
         state.products = products;
         state.productsCount = productsCount;
         state.resultPerPage = resultPerPage;
-
-
       })
       .addCase(fetchProducts.rejected, (state, action) => {
         state.loading = false;

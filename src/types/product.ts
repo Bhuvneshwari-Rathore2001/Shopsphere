@@ -19,10 +19,18 @@ export type IProduct = {
   createdAt: string;
 };
 
-export type IProductState = {
+export type IProductsState = {
   loading: boolean;
   products: IProduct[] | null;
   productsCount: number;
   resultPerPage:number;
   error: null | string;
 };
+
+export type IProductState = {
+  loading: boolean;
+  product: IProduct | null;
+  error: null | string;
+};
+
+

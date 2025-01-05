@@ -5,24 +5,25 @@ import { dispatch, useSelector } from '../redux/store';
 import LatestProductsCard from './LatestProductsCard';
 
 const LatestProducts = () => {
-  const { products , loading } = useSelector((state) => state.products);
-  
+  const { products, loading } = useSelector((state) => state.products);
+
   useEffect(() => {
     dispatch(fetchProducts());
   }, []);
 
-  const renderComponent = () =>{
-    if(loading){
-      return "loading...."
+  const renderComponent = () => {
+    if (loading) {
+      return 'loading....';
     }
     return (
       <div className=' flex flex-1 gap-[42px] gap-y-20 flex-wrap max-w-7xl m-auto'>
-        {products && products.map((product) => (
-          <LatestProductsCard key={product._id} product={product}/>
-        ))}
+        {products &&
+          products.map((product) => (
+            <LatestProductsCard key={product._id} product={product} />
+          ))}
       </div>
     );
-  }
+  };
   return (
     <div className='my-20'>
       <div className='flex justify-center items-center mb-16 max-w-7xl m-auto'>
