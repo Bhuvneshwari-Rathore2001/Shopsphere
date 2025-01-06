@@ -2,6 +2,7 @@ import { Country, State } from 'country-state-city';
 import { useEffect, useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
+import { StepperWithIcon } from '../Components/Stepper';
 
 const Shipping = () => {
   const navigate = useNavigate();
@@ -47,6 +48,7 @@ const Shipping = () => {
       >
         <BiArrowBack className='group-hover:-translate-x-1 ' />
       </button>
+      <StepperWithIcon/>
 
       <div className='flex items-center justify-center mt-10'>
         <div className='shadow-sm shadow-yellow-500 p-10 rounded-2xl w-1/4 gap-4'>
