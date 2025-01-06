@@ -1,21 +1,42 @@
-import { useState } from 'react';
+import { Country, State } from 'country-state-city';
+import { useEffect, useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 
 const Shipping = () => {
+  const navigate = useNavigate();
 
-    const navigate = useNavigate()
+  const [address, setAddress] = useState('');
+  const [country, setCountry] = useState('');
+  const [state, setState] = useState('');
+  const [city, setCity] = useState('');
+  const [pinCode, setPinCode] = useState<number>();
+  const [phoneNo, setPhoneNo] = useState<number>();
 
-  const [shippingInfo] = useState({
-    address: '',
-    city: '',
-    state: '',
-    country: '',
-    pinCode: '',
-  });
+  useEffect(() => {
+    const item = localStorage.getItem('shippingInfo');
 
-  const chngeHandler = () => {
-    // setShippingInfo(prev=>({...prev, [e.target.name]: e.target.value}));
+    const { address, country, state, city, pinCode, phoneNo } = JSON.parse(
+      item as string
+    );
+    setAddress(address);
+    setCountry(country);
+    setState(state);
+    setCity(city);
+    setPinCode(pinCode);
+    setPhoneNo(phoneNo);
+  }, []);
+
+  const handleShipping = () => {
+    const shippingItem = {
+      address: address,
+      country: country,
+      state: state,
+      city: city,
+      pinCode: pinCode,
+      phoneNo: phoneNo,
+    };
+    localStorage.setItem('shippingInfo', JSON.stringify(shippingItem));
   };
 
   return (
@@ -42,8 +63,8 @@ const Shipping = () => {
                 type='text'
                 placeholder='Address'
                 name='address'
-                value={shippingInfo.address}
-                onChange={chngeHandler}
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
                 className='border border-gray-200 w-full bg-gray-100 rounded-md px-4 py-2 mt-2'
               />
 
@@ -52,18 +73,28 @@ const Shipping = () => {
                 type='text'
                 placeholder='City'
                 name='city'
-                value={shippingInfo.city}
-                onChange={chngeHandler}
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
                 className='border border-gray-200 w-full bg-gray-100 rounded-md px-4 py-2 mt-2'
               />
 
               <input
                 required
-                type='text'
-                placeholder='State'
-                name='state'
-                value={shippingInfo.state}
-                onChange={chngeHandler}
+                type='number'
+                placeholder='Pin code'
+                name='pinCode'
+                value={pinCode}
+                onChange={(e) => setPinCode(Number(e.target.value))}
+                className='border border-gray-200 w-full bg-gray-100 rounded-md px-4 py-2 mt-2'
+              />
+
+              <input
+                required
+                type='number'
+                placeholder='Phone No.'
+                name='phoneNo'
+                value={phoneNo}
+                onChange={(e) => setPhoneNo(Number(e.target.value))}
                 className='border border-gray-200 w-full bg-gray-100 rounded-md px-4 py-2 mt-2'
               />
 
@@ -72,32 +103,43 @@ const Shipping = () => {
                 text-gray-700 bg-inherit text-sm border border-gray-200 w-full bg-gray-100 rounded-md px-4 py-2 mt-2'
                 name='country'
                 required
-                value={shippingInfo.country}
-                onChange={chngeHandler}
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
               >
                 <option value=''>Choose Country</option>
-                <option value='india'>India</option>
-                <option value='usa'>USA</option>
-                <option value='uk'>UK</option>
-                <option value='maleysia'>Maleysia</option>
+                {Country &&
+                  Country.getAllCountries().map((item) => (
+                    <option key={item.isoCode} value={item.isoCode}>
+                      {item.name}
+                    </option>
+                  ))}
               </select>
-
-              <input
-                required
-                type='number'
-                placeholder='Pin code'
-                name='pinCode'
-                value={shippingInfo.pinCode}
-                onChange={chngeHandler}
-                className='border border-gray-200 w-full bg-gray-100 rounded-md px-4 py-2 mt-2'
-              />
+              {country && (
+                <select
+                  className='
+                text-gray-700 bg-inherit text-sm border border-gray-200 w-full bg-gray-100 rounded-md px-4 py-2 mt-2'
+                  name='state'
+                  required
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                >
+                  <option value=''>Choose State</option>
+                  {State &&
+                    State.getStatesOfCountry(country).map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              )}
 
               <div className='bg-gray-800 hover:bg-gray-700 text-white py-3 mt-6 rounded-md group px-8 w-full flex items-center justify-center'>
                 <button
                   type='submit'
                   className='group-hover:translate-x-[-4px] group-hover:translate-y-[-4px] transition font-bold'
+                  onClick={() => handleShipping()}
                 >
-                  Pay Now
+                  Continue
                 </button>
               </div>
             </form>
