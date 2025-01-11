@@ -10,9 +10,9 @@ const LatestProductsCard = ({ product }: ILatestProductCard) => {
     <>
       <Link
         to={`/product/details/${product._id}`}
-        className='w-72 border-black border-2 shadow-[8px_8px_0px_0px_rgb(168,85,247)] pb-5 relative group hover:scale-105'
+        className='lg:w-60 md:w-60 w-[90vw] border-black border-2 shadow-[8px_8px_0px_0px_rgb(168,85,247)] pb-5 relative group hover:scale-105'
       >
-        <div className='flex flex-col gap-1  p-[3px] w-full h-full leading-3'>
+        <div className='flex flex-col gap-1 p-[3px] w-full h-full leading-3'>
           <img
             src={product.images[0].url}
             alt='macbook'

@@ -17,15 +17,17 @@ const Shipping = () => {
   useEffect(() => {
     const item = localStorage.getItem('shippingInfo');
 
-    const { address, country, state, city, pinCode, phoneNo } = JSON.parse(
-      item as string
-    );
-    setAddress(address);
-    setCountry(country);
-    setState(state);
-    setCity(city);
-    setPinCode(pinCode);
-    setPhoneNo(phoneNo);
+    if(item){
+      const { address, country, state, city, pinCode, phoneNo } = JSON.parse(
+        item as string
+      );
+      setAddress(address);
+      setCountry(country);
+      setState(state);
+      setCity(city);
+      setPinCode(pinCode);
+      setPhoneNo(phoneNo);
+    }
   }, []);
 
   const handleShipping = () => {

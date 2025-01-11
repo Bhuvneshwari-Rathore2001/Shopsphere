@@ -21,11 +21,11 @@ const Header = () => {
   };
 
   return (
-    <nav className='flex items-center justify-between px-14 py-6 bg-white'>
-      <i className='text-3xl text-pink-500 font-bold'>
+    <nav className='flex items-center justify-between lg:px-14 md:px-8 px-4 lg:py-6 max:md:py-4 bg-white'>
+      <i className='lg:text-3xl md:text-2xl text-xl text-pink-500 font-bold'>
         Shop<span className='text-black'>Sphere</span>
       </i>
-      <div className='flex gap-7 text-black items-center'>
+      <div className='flex lg:gap-7 md:gap-4 gap-3 text-black items-center sm:text-sm'>
         <Link
           to={'/'}
           className='hover:text-[rgb(0,104,136)]'

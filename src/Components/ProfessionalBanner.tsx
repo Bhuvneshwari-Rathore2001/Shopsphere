@@ -6,15 +6,15 @@ const ProfessionalBanner = () => {
           <div className='uppercase font-semibold text-xs tracking-tight leading-5'>
             Work & Office Attire
           </div>
-          <div className='text-5xl font-sans'>
+          <div className='lg:text-5xl md:text-3xl text-xl font-sans'>
             Professional pinstripe blazers collection
           </div>
-          <div className='font-bold text-base text-gray-500 '>
+          <div className='font-bold lg:text-base md:text-sm text-xs text-gray-500 '>
             Elevate your workwear with our Professional Pinstripe Blazers
             Collection, where tailored sophistication meets modern confidence
             for a powerfully polished office look.
           </div>
-          <button className='uppercase text-xs border border-black px-8 py-5 w-fit'>
+          <button className='uppercase text-xs border border-black lg:py-5 md:py-4 py-3 lg:px-8 md:px-6 px-4 w-fit'>
             shop now
           </button>
         </div>
