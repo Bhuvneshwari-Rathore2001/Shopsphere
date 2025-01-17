@@ -63,8 +63,8 @@ const Register = () => {
   };
 
   return (
-    <section className='flex items-center justify-center h-[calc(100vh-84px)] bg-pink-50 p-5'>
-      <main className='w-full max-w-sm bg-white text-sm py-5'>
+    <section className='flex items-center justify-center h-[calc(100vh-84px)] bg-pink-50 p-5 font-serif'>
+      <main className='w-full max-w-sm bg-white py-5'>
         <div className='w-4/5 m-auto flex flex-col gap-2'>
           <h1 className='text-[#4a4848] font-bold md:text-xl text-lg'>
             Register
