@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { ChangeEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { dispatch } from '../redux/store';
 import { updateUserState } from '../redux/slice/userSlice';
 
@@ -17,8 +17,7 @@ const Register = () => {
   const RegisterHandler = async (e: any) => {
     e.preventDefault();
     setLoading(true);
-    console.log(avatar);
-
+    
     const res = await axios.post(
       
       'http://localhost:4000/api/v1/register',
@@ -64,50 +63,47 @@ const Register = () => {
   };
 
   return (
-    <section className='flex items-center justify-center  h-screen'>
-      <main className='w-full max-w-sm flex-col flex gap-3 bg-orange-50 text-sm'>
-        <img
-          src='https://www.printvenue.com/bundles/rocketfrontend/images/singup-popup---first-order-free_03.jpg'
-          alt='login_image'
-          className='h-48 object-fill'
-        />
+    <section className='flex items-center justify-center h-[calc(100vh-84px)] bg-pink-50 p-5'>
+      <main className='w-full max-w-sm bg-white text-sm py-5'>
         <div className='w-4/5 m-auto flex flex-col gap-2'>
-          <h1 className='text-[#4a4848] font-bold text-xl'>Register</h1>
+          <h1 className='text-[#4a4848] font-bold md:text-xl text-lg'>
+            Register
+          </h1>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 md:text-base text-sm'>
             <label className='text-[#4a4848]'>Name</label>
             <input
-              className='border border-[rgba(162,162,162,0.53)] rounded p-2'
+              className='border border-[rgba(162,162,162,0.53)] rounded md:p-2 p-1'
               type='text'
               value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 md:text-base text-sm'>
             <label className='text-[#4a4848]'>Email</label>
             <input
-              className='border border-[rgba(162,162,162,0.53)] rounded p-2'
+              className='border border-[rgba(162,162,162,0.53)] rounded md:p-2 p-1'
               type='email'
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 md:text-base text-sm'>
             <label className='text-[#4a4848]'>Password</label>
             <input
-              className='border border-[rgba(162,162,162,0.53)] rounded p-2'
+              className='border border-[rgba(162,162,162,0.53)] rounded md:p-2 p-1'
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
-          <div className='flex flex-col gap-1'>
+          <div className='flex flex-col gap-1 md:text-base text-sm'>
             <label className='text-[#4a4848]'>Confirm password</label>
             <input
-              className='border border-[rgba(162,162,162,0.53)] rounded p-2'
+              className='border border-[rgba(162,162,162,0.53)] rounded md:p-2 p-1'
               type='password'
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -123,7 +119,7 @@ const Register = () => {
               />
             )}
             <input
-              className='border border-[rgba(162,162,162,0.53)] rounded p-2'
+              className='border border-[rgba(162,162,162,0.53)] rounded md:p-2 p-1'
               type='file'
               onChange={onHandleAvatar}
             />
@@ -131,21 +127,21 @@ const Register = () => {
 
           <div>
             <button
-              className='w-full h-12 bg-red-600 text-white flex border-red-600 border rounded text-lg items-center justify-center uppercase mt-3'
+              className='w-full h-12 bg-pink-500/80 text-white flex border-pink-600 border rounded md:text-lg text-base items-center justify-center uppercase mt-3 hover:bg-pink-500/90'
               onClick={RegisterHandler}
               disabled={loading}
             >
               {loading ? <div>Loading...</div> : <div>Register</div>}
             </button>
 
-            <p className='text-center mt-2 text-[#4a4848] text-xs'>
+            <p className='text-center mt-2 text-[#4a4848] text-xs md:text-sm'>
               Already Signup?
-              <button
-                className='text-[#252424] font-bold'
-                onClick={() => navigate('/login')}
+              <Link
+                to='/login'
+                className='text-[#252424] font-bold hover:text-pink-500 p-1'
               >
                 Login
-              </button>
+              </Link>
             </p>
           </div>
         </div>

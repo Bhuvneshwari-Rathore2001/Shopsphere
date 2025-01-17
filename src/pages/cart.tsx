@@ -17,7 +17,7 @@ const Cart = () => {
   return (
     <div className='h-[calc(100vh-84px)]'>
       {cartItems.length > 0 ? (
-        <div className='flex'>
+        <div className='flex max-md:flex-col'>
           <div className='flex-1 border-r border-gray-300'>
             <div className=' text-gray-800'>
               <header className='pt-10 pl-10 pb-5 border-b border-gray-300'>
@@ -36,7 +36,7 @@ const Cart = () => {
               </section>
             </div>
           </div>
-          <div className='w-4/12 h-full'>
+          <div className='w-4/12 h-full flex-1'>
             <PriceDetails />
           </div>
         </div>

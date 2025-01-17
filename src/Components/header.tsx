@@ -21,36 +21,39 @@ const Header = () => {
   };
 
   return (
-    <nav className='flex items-center justify-between lg:px-14 md:px-8 px-4 lg:py-6 max:md:py-4 bg-white'>
+    <nav className='flex items-center justify-between lg:px-14 md:px-10 px-4 md:py-6 py-4 bg-white'>
       <i className='lg:text-3xl md:text-2xl text-xl text-pink-500 font-bold'>
         Shop<span className='text-black'>Sphere</span>
       </i>
-      <div className='flex lg:gap-7 md:gap-4 gap-3 text-black items-center sm:text-sm'>
+      <div className='flex lg:gap-7 md:gap-4 gap-3 text-black items-center md:text-base text-sm' >
         <Link
           to={'/'}
-          className='hover:text-[rgb(0,104,136)]'
+          className='hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
           onClick={() => setIsOpen(false)}
         >
           HOME
         </Link>
         <Link
           to={'/search'}
-          className=' hover:text-[rgb(0,104,136)]'
+          className=' hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
           onClick={() => setIsOpen(false)}
         >
           <FaSearch />
         </Link>
         <Link
           to={'/cart'}
-          className=' hover:text-[rgb(0,104,136)]'
+          className=' hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
           onClick={() => setIsOpen(false)}
         >
           <FaShoppingBag />
         </Link>
 
         {user ? (
-          <div className='relative text-[rgb(46,46,46) hover:text-[rgb(0,104,136)]'>
-            <button onClick={() => setIsOpen((prev) => !prev)}>
+          <div className='relative text-[rgb(46,46,46)  '>
+            <button
+              onClick={() => setIsOpen((prev) => !prev)}
+              className='p-1 cursor-pointer hover:text-[rgb(0,104,136)]'
+            >
               <FaUser />
             </button>
             <dialog
@@ -63,7 +66,7 @@ const Header = () => {
                     <Link
                       to='/admin/dashboard'
                       onClick={() => setIsOpen(false)}
-                      className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)]'
+                      className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
                     >
                       Admin
                     </Link>
@@ -72,20 +75,20 @@ const Header = () => {
                 <Link
                   to='/orders'
                   onClick={() => setIsOpen(false)}
-                  className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)]'
+                  className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
                 >
                   Orders
                 </Link>
                 <Link
                   to='/profile'
                   onClick={() => setIsOpen(false)}
-                  className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)]'
+                  className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
                 >
                   Profile
                 </Link>
                 <button
                   onClick={logoutHandler}
-                  className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)]'
+                  className='text-[rgb(46,46,46) hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
                 >
                   Log out
                 </button>
