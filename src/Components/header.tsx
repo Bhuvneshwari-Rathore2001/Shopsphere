@@ -25,7 +25,7 @@ const Header = () => {
       <i className='lg:text-3xl md:text-2xl text-xl text-pink-500 font-bold'>
         Shop<span className='text-black'>Sphere</span>
       </i>
-      <div className='flex lg:gap-7 md:gap-4 gap-3 text-black items-center md:text-base text-sm' >
+      <div className='flex lg:gap-7 md:gap-4 gap-3 text-black items-center md:text-base text-sm'>
         <Link
           to={'/'}
           className='hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
@@ -33,13 +33,7 @@ const Header = () => {
         >
           HOME
         </Link>
-        <Link
-          to={'/search'}
-          className=' hover:text-[rgb(0,104,136)] p-1 cursor-pointer'
-          onClick={() => setIsOpen(false)}
-        >
-          <FaSearch />
-        </Link>
+        
         <Link
           to={'/cart'}
           className=' hover:text-[rgb(0,104,136)] p-1 cursor-pointer'

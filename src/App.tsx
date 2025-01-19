@@ -13,13 +13,13 @@ import EditUser from './adminDashboard/pages/editUser.tsx';
 import ProductDetail from './pages/productDetails.tsx';
 import Profile from './pages/profile.tsx';
 
+import Header from './Components/header.tsx';
 import { fetchUser } from './redux/slice/userSlice.ts';
 import { useDispatch, useSelector } from './redux/store.ts';
-import Header from './Components/header.tsx';
 // import Profile from './pages/Profile.tsx';
 
 const Home = lazy(() => import('./pages/home'));
-const Search = lazy(() => import('./pages/search'));
+
 const Cart = lazy(() => import('./pages/cart'));
 const Shipping = lazy(() => import('./pages/shipping.tsx'));
 const Register = lazy(() => import('./pages/register.tsx'));
@@ -61,7 +61,7 @@ function App() {
         <Routes>
           {/*if not login or login both case  */}
           <Route path='/' element={<Home />} />
-          <Route path='/search' element={<Search />} />
+          
           <Route path='/product/details/:id' element={<ProductDetail />} />
           <Route
             path='/cart'

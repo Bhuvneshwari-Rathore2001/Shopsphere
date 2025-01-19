@@ -128,9 +128,16 @@ const NewProduct = () => {
               className='border border-[rgba(162,162,162,0.53)] rounded p-2'
             />
             <div className='flex justify-center gap-3'>
-              {imagesPreview.map((file) => (
-                file && <img src={URL.createObjectURL(file)} alt="Preview" className="size-14" />
-              ))}
+              {imagesPreview.map(
+                (file) =>
+                  file && (
+                    <img
+                      src={URL.createObjectURL(file)}
+                      alt='Preview'
+                      className='size-14'
+                    />
+                  )
+              )}
             </div>
           </div>
           <div className='flex flex-col gap-1'>
