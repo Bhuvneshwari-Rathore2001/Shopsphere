@@ -1,17 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useSelector } from '../redux/store';
 
-const { cartItems } = useSelector((state) => state.cart);
-
- const subtotal = cartItems.reduce(
-   (acc, item) => acc + item.price * item.quantity,
-   0
- );
-
-const shippingCharges = 200;
-const tax = (subtotal * 18) / 100;
-const total = subtotal + tax + shippingCharges;
 function OrderPriceDetails() {
+  const { cartItems } = useSelector((state) => state.cart);
+
+  const subtotal = cartItems.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
+
+  const shippingCharges = 200;
+  const tax = (subtotal * 18) / 100;
+  const total = subtotal + tax + shippingCharges;
   return (
     <div className='h-full'>
       <header className='mt-10 pl-10 pb-5'>

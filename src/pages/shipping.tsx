@@ -1,25 +1,22 @@
 import { Country, State } from 'country-state-city';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { StepperWithIcon } from '../Components/Stepper';
 import { useSelector } from '../redux/store';
 
-
 const Shipping = () => {
   const navigate = useNavigate();
-const {shippingInfo}  = useSelector(
-  (state) => state.cart
-);
-  const [address, setAddress] = useState(shippingInfo?.address||"");
+  const { shippingInfo } = useSelector((state) => state.cart);
+  const [address, setAddress] = useState(shippingInfo?.address || '');
   const [country, setCountry] = useState(shippingInfo?.country || '');
   const [state, setState] = useState(shippingInfo?.state || '');
   const [city, setCity] = useState(shippingInfo?.city || '');
   const [pinCode, setPinCode] = useState<number>(shippingInfo?.pinCode);
   const [phoneNo, setPhoneNo] = useState<number>(shippingInfo?.phoneNo);
 
-  const handleShipping = (e:any) => {
-    e.preventDefault()
+  const handleShipping = (e: any) => {
+    e.preventDefault();
     const shippingItem = {
       address: address,
       country: country,
