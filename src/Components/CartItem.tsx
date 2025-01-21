@@ -1,23 +1,29 @@
 import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import { ICart } from '../types/cart';
+import { useDispatch } from '../redux/store';
+import { updateQuantity } from '../redux/slice/cartSlice';
 
-
-function CartItem(item:ICart) {
-  const [quantity, setQuantity] = useState(item.quantity);
-
-  const trashHandler = () => {};
+function CartItem(item: ICart) {
+  const dispatch = useDispatch();
 
   const increaseProductQty = () => {
-    if (quantity < item.stock) {
-      setQuantity(quantity + 1);
+    if (item.quantity < item.stock) {
+      dispatch(
+        updateQuantity({ productId: item.product, quantity: item.quantity + 1 })
+      );
     }
   };
+
   const decreaseProductQty = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
+    if (item.quantity > 1) {
+      dispatch(
+        updateQuantity({ productId: item.product, quantity: item.quantity - 1 })
+      );
     }
   };
+
+  const subTotal = item.price * item.quantity;
 
   return (
     <div className='flex border-l-4 border-gray-800 px-4 gap-3'>
@@ -31,7 +37,7 @@ function CartItem(item:ICart) {
           </h3>
           <button
             className='hover:text-red-500 hover:scale-[1.3] cursor-pointer'
-            onClick={trashHandler}
+            // onClick={trashHandler}
           >
             <FaTrash />
           </button>
@@ -39,7 +45,7 @@ function CartItem(item:ICart) {
         {/* <p className='text-gray-600'>{items.description}</p> */}
 
         <div className='flex flex-col gap-2'>
-          <div>Quantity : {quantity}</div>
+          <div>Quantity : {item.quantity}</div>
           <div className='flex gap-5 items-center'>
             <button
               onClick={decreaseProductQty}
@@ -47,7 +53,7 @@ function CartItem(item:ICart) {
             >
               -
             </button>
-            <div>{quantity}</div>
+            <div>{item.quantity}</div>
             <button
               onClick={increaseProductQty}
               className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 size-8 text-center'
@@ -58,13 +64,13 @@ function CartItem(item:ICart) {
           <div className=' '>
             Price :{' '}
             <span className='text-pink-500 font-bold text-xl ml-4'>
-              ${item.price}
+              ₹{item.price}
             </span>
           </div>
           <div className=' '>
             Sub Total :{' '}
             <span className='text-pink-500 font-bold text-xl ml-4'>
-              ${quantity * item.price}
+              ₹{subTotal}
             </span>
           </div>
         </div>

@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
-import CartItem from '../Components/CartItem';
-import PriceDetails from '../Components/PriceDetails';
+import OrderPriceDetails from '../Components/OrderPriceDetails';
 import { useSelector } from '../redux/store';
+import OrderItem from './orderItem';
 
-const Cart = () => {
-  const { cartItems } = useSelector((state) => state.cart);
+const ConfirmOrder = () => {
+  const { cartItems, shippingInfo } = useSelector((state) => state.cart);
+  const { user } = useSelector((state) => state.user);
 
   return (
     <div className='h-[calc(100vh-84px)]'>
@@ -14,22 +15,37 @@ const Cart = () => {
             <div className=' text-gray-800'>
               <header className='pt-10 pl-10 pb-5 border-b border-gray-300'>
                 <h2 className='text-3xl font-bold '>
-                  Your <span className='text-pink-500'>Cart</span>
+                  Your <span className='text-pink-500'>Shipping Info</span>
                 </h2>
-                <p className='text-md mt-2 text-gray-700'>
-                  Checkout all your items and modify quantity as needed from
-                  here
-                </p>
               </header>
-              <section className='p-10 flex flex-col gap-10 h-[69vh] overflow-y-auto no-scrollbar'>
+              <section className='p-10 flex flex-col gap-10'>
+                <div className='flex gap-5'>
+                  <div>NAme:</div>
+                  <div>{user?.name}</div>
+                </div>
+                <div className='flex gap-5'>
+                  <div>Phone:</div>
+                  <div>{shippingInfo.phoneNo}</div>
+                </div>
+                <div className='flex gap-5'>
+                  <div>Address:</div>
+                  <div>{shippingInfo.phoneNo}</div>
+                </div>
+              </section>
+              <header className='pt-10 pl-10 pb-5 border-b border-gray-300'>
+                <h2 className='text-3xl font-bold '>
+                  Your <span className='text-pink-500'>Cart Items</span>
+                </h2>
+              </header>
+              <section className='p-10 flex flex-col gap-10'>
                 {cartItems.map((item, index) => (
-                  <CartItem key={index} {...item} />
+                  <OrderItem key={index} {...item} />
                 ))}
               </section>
             </div>
           </div>
           <div className='w-4/12 h-full flex-1'>
-            <PriceDetails />
+            <OrderPriceDetails />
           </div>
         </div>
       ) : (
@@ -42,7 +58,7 @@ const Cart = () => {
             <div className='flex flex-col items-center justify-center'>
               <h1>Hey! it feels so light!</h1>
               <p className='text-[rgb(42,42,42)] text-xs'>
-                There is nothing in your bag. Let's add some items.
+                There is nothing in your order. Let's add some items.
               </p>
             </div>
             <Link
@@ -58,4 +74,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default ConfirmOrder;

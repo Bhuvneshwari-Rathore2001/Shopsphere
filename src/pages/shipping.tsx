@@ -3,34 +3,23 @@ import { useEffect, useState } from 'react';
 import { BiArrowBack } from 'react-icons/bi';
 import { useNavigate } from 'react-router-dom';
 import { StepperWithIcon } from '../Components/Stepper';
+import { useSelector } from '../redux/store';
+
 
 const Shipping = () => {
   const navigate = useNavigate();
+const {shippingInfo}  = useSelector(
+  (state) => state.cart
+);
+  const [address, setAddress] = useState(shippingInfo?.address||"");
+  const [country, setCountry] = useState(shippingInfo?.country || '');
+  const [state, setState] = useState(shippingInfo?.state || '');
+  const [city, setCity] = useState(shippingInfo?.city || '');
+  const [pinCode, setPinCode] = useState<number>(shippingInfo?.pinCode);
+  const [phoneNo, setPhoneNo] = useState<number>(shippingInfo?.phoneNo);
 
-  const [address, setAddress] = useState('');
-  const [country, setCountry] = useState('');
-  const [state, setState] = useState('');
-  const [city, setCity] = useState('');
-  const [pinCode, setPinCode] = useState<number>();
-  const [phoneNo, setPhoneNo] = useState<number>();
-
-  useEffect(() => {
-    const item = localStorage.getItem('shippingInfo');
-
-    if(item){
-      const { address, country, state, city, pinCode, phoneNo } = JSON.parse(
-        item as string
-      );
-      setAddress(address);
-      setCountry(country);
-      setState(state);
-      setCity(city);
-      setPinCode(pinCode);
-      setPhoneNo(phoneNo);
-    }
-  }, []);
-
-  const handleShipping = () => {
+  const handleShipping = (e:any) => {
+    e.preventDefault()
     const shippingItem = {
       address: address,
       country: country,
@@ -40,6 +29,7 @@ const Shipping = () => {
       phoneNo: phoneNo,
     };
     localStorage.setItem('shippingInfo', JSON.stringify(shippingItem));
+    navigate('/order/confirm');
   };
 
   return (
@@ -50,7 +40,7 @@ const Shipping = () => {
       >
         <BiArrowBack className='group-hover:-translate-x-1 ' />
       </button>
-      <StepperWithIcon/>
+      <StepperWithIcon />
 
       <div className='flex items-center justify-center mt-10'>
         <div className='shadow-sm shadow-yellow-500 p-10 rounded-2xl w-1/4 gap-4'>
@@ -61,7 +51,7 @@ const Shipping = () => {
           </div>
 
           <div>
-            <form className='flex flex-col gap-4'>
+            <form className='flex flex-col gap-4' onSubmit={handleShipping}>
               <input
                 required
                 type='text'
@@ -141,7 +131,6 @@ const Shipping = () => {
                 <button
                   type='submit'
                   className='group-hover:translate-x-[-4px] group-hover:translate-y-[-4px] transition font-bold'
-                  onClick={() => handleShipping()}
                 >
                   Continue
                 </button>

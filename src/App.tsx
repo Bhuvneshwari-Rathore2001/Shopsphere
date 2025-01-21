@@ -19,9 +19,9 @@ import { useDispatch, useSelector } from './redux/store.ts';
 // import Profile from './pages/Profile.tsx';
 
 const Home = lazy(() => import('./pages/home'));
-
 const Cart = lazy(() => import('./pages/cart'));
 const Shipping = lazy(() => import('./pages/shipping.tsx'));
+const ConfirmOrder = lazy(() => import('./pages/confirmOrder.tsx'));
 const Register = lazy(() => import('./pages/register.tsx'));
 const Login = lazy(() => import('./pages/login.tsx'));
 const ForgetPassword = lazy(() => import('./pages/forgetPassword.tsx'));
@@ -61,7 +61,7 @@ function App() {
         <Routes>
           {/*if not login or login both case  */}
           <Route path='/' element={<Home />} />
-          
+
           <Route path='/product/details/:id' element={<ProductDetail />} />
           <Route
             path='/cart'
@@ -94,6 +94,10 @@ function App() {
           <Route
             path='/order'
             element={isAuthenticated ? <Order /> : <Navigate to='/' />}
+          />
+          <Route
+            path='/order/confirm'
+            element={isAuthenticated ? <ConfirmOrder /> : <Navigate to='/' />}
           />
           <Route
             path='/order/:id'
