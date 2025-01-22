@@ -16,12 +16,15 @@ import Profile from './pages/profile.tsx';
 import Header from './Components/header.tsx';
 import { fetchUser } from './redux/slice/userSlice.ts';
 import { useDispatch, useSelector } from './redux/store.ts';
+
 // import Profile from './pages/Profile.tsx';
 
 const Home = lazy(() => import('./pages/home'));
 const Cart = lazy(() => import('./pages/cart'));
 const Shipping = lazy(() => import('./pages/shipping.tsx'));
 const ConfirmOrder = lazy(() => import('./pages/confirmOrder.tsx'));
+const StripePayment = lazy(() => import('./pages/stripePayment.tsx'));
+const OrderSuccess = lazy(() => import('./pages/orderSuccess.tsx'));
 const Register = lazy(() => import('./pages/register.tsx'));
 const Login = lazy(() => import('./pages/login.tsx'));
 const ForgetPassword = lazy(() => import('./pages/forgetPassword.tsx'));
@@ -98,6 +101,14 @@ function App() {
           <Route
             path='/order/confirm'
             element={isAuthenticated ? <ConfirmOrder /> : <Navigate to='/' />}
+          />
+          <Route
+            path='/payment'
+            element={isAuthenticated ? <StripePayment /> : <Navigate to='/' />}
+          />
+          <Route
+            path='/success/order'
+            element={isAuthenticated ? <OrderSuccess /> : <Navigate to='/' />}
           />
           <Route
             path='/order/:id'

@@ -13,7 +13,8 @@ const initialState: IUserState = {
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
   const response = await axios.get(`http://localhost:4000/api/v1/me`, {
     withCredentials: true,
-  });
+  },
+);
   return response.data.user;
 });
 
