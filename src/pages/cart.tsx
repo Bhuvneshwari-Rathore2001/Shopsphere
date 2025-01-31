@@ -9,26 +9,26 @@ const Cart = () => {
   return (
     <div className='h-[calc(100vh-84px)]'>
       {cartItems.length > 0 ? (
-        <div className='flex max-md:flex-col'>
+        <div className='flex flex-col md:flex-row'>
           <div className='flex-1 border-r border-gray-300'>
             <div className=' text-gray-800'>
               <header className='pt-10 pl-10 pb-5 border-b border-gray-300'>
-                <h2 className='text-3xl font-bold '>
+                <h2 className='lg:text-3xl md:text-2xl text-xl font-bold '>
                   Your <span className='text-pink-500'>Cart</span>
                 </h2>
-                <p className='text-md mt-2 text-gray-700'>
+                <p className='md:text-base text-sm mt-2 text-gray-700'>
                   Checkout all your items and modify quantity as needed from
                   here
                 </p>
               </header>
-              <section className='p-10 flex flex-col gap-10 h-[69vh] overflow-y-auto no-scrollbar'>
+              <section className='p-10 flex flex-col gap-10 lg:h-[69vh] md:h-[60vh] h-[55vh] overflow-y-auto no-scrollbar'>
                 {cartItems.map((item, index) => (
                   <CartItem key={index} {...item} />
                 ))}
               </section>
             </div>
           </div>
-          <div className='w-4/12 h-full flex-1'>
+          <div className='md:w-4/12 h-full flex-1 w-full'>
             <PriceDetails />
           </div>
         </div>

@@ -1,8 +1,7 @@
-import { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
-import { ICart } from '../types/cart';
-import { useDispatch } from '../redux/store';
 import { updateQuantity } from '../redux/slice/cartSlice';
+import { useDispatch } from '../redux/store';
+import { ICart } from '../types/cart';
 
 function CartItem(item: ICart) {
   const dispatch = useDispatch();
@@ -28,11 +27,15 @@ function CartItem(item: ICart) {
   return (
     <div className='flex border-l-4 border-gray-800 px-4 gap-3'>
       <div>
-        <img className='max-w-40 rounded-md' src={item.image} alt='Lighter' />
+        <img
+          className='lg:max-w-40 md:max-w-36 max-w-28 rounded-md'
+          src={item.image}
+          alt='Lighter'
+        />
       </div>
-      <div className='px-5 max-w-md flex flex-col gap-3 w-full'>
+      <div className='px-5 max-w-md flex flex-col lg:gap-3 md:gap-2 gap-0 w-full'>
         <div className='flex items-center justify-between'>
-          <h3 className='text-xl font-semibold mb-1 text-pink-500'>
+          <h3 className='lg:text-xl md:text-lg text-base font-semibold mb-1 text-pink-500'>
             {item.name}
           </h3>
           <button
@@ -44,32 +47,32 @@ function CartItem(item: ICart) {
         </div>
         {/* <p className='text-gray-600'>{items.description}</p> */}
 
-        <div className='flex flex-col gap-2'>
-          <div>Quantity : {item.quantity}</div>
+        <div className='flex flex-col md:gap-2 gap-1'>
+          <div className='lg:text-base text-sm'>Quantity : {item.quantity}</div>
           <div className='flex gap-5 items-center'>
             <button
               onClick={decreaseProductQty}
-              className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 size-8 text-center'
+              className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 lg:size-8 md:size-7 size-6 text-center'
             >
               -
             </button>
-            <div>{item.quantity}</div>
+            <div className='lg:text-base text-sm'>{item.quantity}</div>
             <button
               onClick={increaseProductQty}
-              className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 size-8 text-center'
+              className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 lg:size-8 md:size-7 size-6 text-center'
             >
               +
             </button>
           </div>
-          <div className=' '>
+          <div className='lg:text-base text-sm'>
             Price :{' '}
-            <span className='text-pink-500 font-bold text-xl ml-4'>
+            <span className='text-pink-500 font-bold lg:text-xl md:text-lg text-base ml-4'>
               ₹{item.price}
             </span>
           </div>
-          <div className=' '>
+          <div className='lg:text-base text-sm'>
             Sub Total :{' '}
-            <span className='text-pink-500 font-bold text-xl ml-4'>
+            <span className='text-pink-500 font-bold lg:text-xl md:text-lg text-base ml-4'>
               ₹{subTotal}
             </span>
           </div>

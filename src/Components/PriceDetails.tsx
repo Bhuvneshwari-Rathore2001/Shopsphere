@@ -16,44 +16,48 @@ function PriceDetails() {
   return (
     <div className='h-full'>
       <header className='mt-10 pl-10 pb-5'>
-        <h2 className='text-3xl font-bold text-gray-800'>
+        <h2 className='lg:text-3xl md:text-2xl text-xl font-bold text-gray-800'>
           Price <span className='text-pink-500'>Details</span>
         </h2>
-        <p className='text-md mt-2 text-gray-700'>
+        <p className='md:text-base text-sm mt-2 text-gray-700'>
           Checkout price breakdown of all your items here
         </p>
       </header>
-      <section className='overflow-y-auto h-[69vh] no-scrollbar pb-10'>
+      <section >
         <div className='px-4 py-4 flex flex-col gap-5 shadow-sm mx-10 border border-gray-200 rounded-2xl'>
           <section className='flex justify-between px-4'>
-            <label className='font-semibold text-gray-700 text-lg'>
+            <label className='font-semibold text-gray-700 md:text-lg text-base'>
               Subtotal
             </label>
-            <span className='text-gray-700 text-lg'>{subtotal}</span>
+            <span className='text-gray-700 md:text-lg text-base'>
+              {subtotal}
+            </span>
           </section>
           <section className='flex justify-between px-4'>
-            <label className='font-semibold text-gray-700 text-lg'>
+            <label className='font-semibold text-gray-700 md:text-lg text-base'>
               Shipping Charges
             </label>
-            <span className='text-gray-700 text-lg'>50</span>
+            <span className='text-gray-700 md:text-lg text-base'>50</span>
           </section>
           <section className='flex justify-between px-4'>
-            <label className='font-semibold text-gray-700 text-lg'>
+            <label className='font-semibold text-gray-700 md:text-lg text-base'>
               Discount
             </label>
-            <span className='text-green-700 font-bold text-lg'>
+            <span className='text-green-700 font-bold md:text-lg text-base'>
               - {discount}
             </span>
           </section>
-          <section className='flex justify-between border-t pt-4 px-4'>
-            <label className='font-semibold text-gray-700 text-lg'>Total</label>
-            <span className='text-gray-700 text-lg'>{total}</span>
+          <section className='flex justify-between border-t px-4'>
+            <label className='font-semibold text-gray-700 md:text-lg text-base'>
+              Total
+            </label>
+            <span className='text-gray-700 md:text-lg text-base'>{total}</span>
           </section>
         </div>
         <div
-          className={'flex flex-col px-10 mt-5 border-t border-gray-200 pt-4'}
+          className={'flex flex-col px-10 border-t border-gray-200 pt-4'}
         >
-          <button className='bg-gray-800 hover:bg-gray-700 text-white py-4 rounded-md group px-8 mt-5'>
+          <button className='bg-gray-800 hover:bg-gray-700 text-white md:py-4 py-2 rounded-md group px-8'>
             <Link to='/shipping'>
               <div className='group-hover:translate-x-[-4px] group-hover:translate-y-[-4px] transition font-bold'>
                 Checkout
