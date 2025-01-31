@@ -50,14 +50,14 @@ const Profile = () => {
   };
 
   return (
-    <div className='flex items-center justify-center max-w-5xl m-auto h-[calc(100vh-84px)]'>
-      <div className='flex gap-20 flex-1 items-center'>
+    <div className='flex items-center justify-center md:max-w-5xl md:m-auto m-5 h-[calc(100vh-84px)] '>
+      <div className='flex flex-col md:flex-row md:gap-20 gap-5 flex-1 items-center'>
         <div className='w-full flex flex-col gap-3'>
           <div className='relative group'>
             <img
               src={avatar || user?.avatar.url || '/assets/user_placeholder.jpg'}
               alt='avatar'
-              className='h-72'
+              className='md:h-72 h-56'
             />
             <label
               htmlFor='avatar'
@@ -74,11 +74,11 @@ const Profile = () => {
           </div>
 
           <button
-            className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 py-2 px-3'
+            className='w-full md:py-3 py-1 bg-pink-500/80 text-white flex border-pink-600 border rounded md:text-lg text-sm items-center justify-center uppercase mt-3 hover:bg-pink-500/90'
             onClick={() => {
               setIsUpdate(!isUpdate);
               if (isUpdate) {
-                console.log("im calling")
+                console.log('im calling');
                 updateUser();
               }
             }}
@@ -87,12 +87,14 @@ const Profile = () => {
             {isUpdate ? 'Save Changes' : 'Edit Profile'}
           </button>
         </div>
-        <div className='w-full flex flex-col gap-3'>
+        <div className='w-full flex flex-col md:gap-3 gap-1'>
           <div className='flex flex-col gap-1'>
-            <div className='font-lg text-4xl text-gray-900'>Profile</div>
+            <div className='font-lg md:text-4xl text-lg text-gray-900'>
+              Profile
+            </div>
             <span className='text-gray-500 text-sm'>{user?._id}</span>
           </div>
-          <div className='text-gray-900 text-lg grid grid-cols-2 grid-rows-3'>
+          <div className='text-gray-900 md:text-lg text-sm grid grid-cols-2 grid-rows-3'>
             <div>Name</div>
             <input
               disabled={!isUpdate}
@@ -111,10 +113,10 @@ const Profile = () => {
             <div>Joined on</div>
             <div>{user?.createdAt}</div>
           </div>
-          <button className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 py-3'>
+          <button className='w-full md:py-3 py-1 bg-pink-500/80 text-white flex border-pink-600 border rounded md:text-lg text-sm items-center justify-center uppercase mt-3 hover:bg-pink-500/90'>
             My Orders
           </button>
-          <button className='bg-[rgba(0,0,0,0.7)] text-white hover:bg-black hover:text-pink-500 py-3'>
+          <button className='w-full md:py-3 py-1 bg-pink-500/80 text-white flex border-pink-600 border rounded md:text-lg text-sm items-center justify-center uppercase mt-3 hover:bg-pink-500/90'>
             Change Password
           </button>
         </div>
